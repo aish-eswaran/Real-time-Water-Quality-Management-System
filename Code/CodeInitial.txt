@@ -1,0 +1,125 @@
+#Setting proxy for R environment(SSN)
+Sys.setenv(http_proxy="http://proxy.ssn.net:8080")
+Sys.getenv("http_proxy")
+
+#Preparing Data
+waterdata<-read.csv("~/Documents/Final Yr Project/Data/water-treatment.data", header=FALSE,sep = ",")
+waterdata[1]<-NULL
+waterdata[1]<-NULL
+waternames <- read.csv("~/Documents/Final Yr Project/Data/waternames.csv", sep="")
+
+#Assign header to dataset
+names(waterdata)<-sapply((1:nrow(waternames)),function(i) toString(waternames[i,1]))
+
+#Replace "?" with "NA"
+idx <- waterdata == "?"
+is.na(waterdata) <- idx
+
+#Eliminate the rows with "NA"
+waterdata <- na.omit(waterdata)
+
+#Determine no of clusters(Elbow method)
+wss <- (nrow(waterdata)-1)*sum(apply(waterdata,2,var))
+for (i in 2:15) wss[i] <- sum(kmeans(waterdata,centers=i)$withinss)
+plot(1:15, wss, type="b", xlab="Number of Clusters",ylab="Within groups sum of squares")
+
+# K-Means Cluster Analysis
+fit <- kmeans(waterdata, 5) # 5 cluster solution
+# get cluster means
+aggregate(waterdata,by=list(fit$cluster),FUN=mean)
+# append cluster assignment
+waterdata <- data.frame(waterdata,fit$cluster)
+----------------------------------------------------------------
+# Ward Hierarchical Clustering
+d <- dist(temp, method = "euclidean") # distance matrix  <<used waterdata instead of temp>>
+fit <- hclust(d, method="ward.D")
+# display dendogram
+plot(fit)
+# cut tree into 5 clusters
+groups <- cutree(fit, k=5)
+# draw dendogram with red borders around the 5 clusters
+rect.hclust(fit, k=5, border="red")
+
+#visualize the clustering results
+library(cluster)
+clusplot(waterdata, fit$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+
+#Normalization function(Min-Max)
+doit <- function(x) {
+    return ((x - min(x)) / (max(x) - min(x)))
+  }
+#Normalization error(Solution)
+temp[, 1] <- as.numeric(as.character( temp[, 1] ))
+#Normalize a column
+temp["ZN.E"] <- as.data.frame(lapply(temp["ZN.E"], doit))
+#Normalize all columns using for
+m=1
+for (m in 1:37){
+ temp[, m] <- as.numeric(as.character( temp[,m] ))
+ temp[m]<- as.data.frame(lapply(temp[m], doit))
+ }
+
+ #Sorting
+ fulldata<-fulldata[order(fulldata$fit.cluster),]
+
+#Subset
+cluster1 <- subset(temp,temp$fit.cluster==1)
+
+#Setting up of classes
+class1 <- read.csv("~/Documents/Final Yr Project/Data/class1.csv", header=FALSE)
+class1 <- data.frame(class1)
+class1<-t(class1)
+
+
+//**#Comparing with original class values
+c1<-charmatch(cluster1$ID,class1$class1, nomatch =NA)
+cluster1 <- data.frame(cluster1,c1)
+cluster1$c1 <- replace(cluster1$c1,(cluster1$c1!="NA"),"class1")**//
+
+
+#To assign class values to cluster file
+i=1
+for (i in 1:length(cluster1$ID)){
+for (j in 1:length(class1)){
+if (identical(trimws(as.character(cluster1$ID[i])),trimws(class1[j]))){
+cluster1$c1[i]<-"class1"
+break
+}
+else
+cluster1$c1[i]<-NA
+}
+j=1
+}
+
+#Combining multiple columns into a single column
+combine1<-function(){
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c2,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c3,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c4,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c5,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c6,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c7,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c8,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c9,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c10,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c11,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c12,cluster1$c1)
+cluster1$c1 = ifelse(is.na(cluster1$c1),cluster1$c13,cluster1$c1)
+}
+
+#To find the count of the rows based on a particular value
+length(which(wd1cluster1$c1=="class1"))
+
+#Matching two codes' columns
+s=0
+i=1
+for (i in 1:1128){
+for (j in 1:1128){
+if(identical(code$STATION.CODE[i],waterdata2$STATION.CODE[j])){
+s=s+1
+waterdata2$match[j]<-s
+break
+}
+}
+j=1
+}

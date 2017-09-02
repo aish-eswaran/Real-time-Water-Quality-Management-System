@@ -1,0 +1,42 @@
+Sensor And Data Fusion Book - 
+http://books.google.co.za/books?id=-782bo4u_ogC&pg=PR7&source=gbs_selected_pages&cad=2#v=onepage&q&f=false
+
+Data Fusion - Wiki
+Data integration - Wiki - Theory Of DI
+First Order Logic - Wiki
+Cyber infrastructure - Wiki
+GIS - Wiki
+Data wrangling - Wiki - transform from one form to another,mapping data,semi-automated
+Image Fusion - Wiki - Multisensor,algorithms,high spatial and spectral resolution,why,std methods,remote sensing,medicine,metrics
+Sensor Fusion - Wiki
+different sensors and applications - wiki
+sensor fusion algorithms(4) - wiki
+centralized vs decentralized - blindly give-in by clients vs intelligent fusion by clients
+Levels(6) - wiki
+Info is not data - wiki - info,data,knowledge - for knwldge,info needs "cognitive" observer
+Data Computing - wiki - Data stored in rdbms in key/value pairs
+Data Organization - wiki - structures,graphs,objects
+Multi sensory integration** - wiki - mechanisms and stuff
+Fisher's method - wiki - meta-analysis,Implementation in R coding
+Brown's method,Kost's method
+Stouffer's Z-score method
+TransducerML(TML) - wiki - open geospatial consortium std + XML + metadata
+Brooks-Iyengar algo(?) 
+sensor grid - grid computing+wireless sensor n/w = real-time sensor data collection
+
+meta search engines or systems - wiki - SavvySearch and MetaSeek
+Information Retrieval systems - wiki - IR systems
+
+13.02.2015
+
+virtual data integration in data fusion - pdf - this is more of data fusion in virtual data integration
+
+
+
+
+
+12.02.2015
+
+water quality - wiki
+wat purpose? hu will be the end consumers? ideal characteristics of potable water
+

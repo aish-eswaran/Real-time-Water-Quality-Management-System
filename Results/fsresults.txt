@@ -1,0 +1,144 @@
+Chi squared feature selection
+
+[1] "PH.D"     "DBO.D"    "PH.E"     "PH.P"     "DBO.P"    "SSV.E"    "DQO.D"    "RD.DQO.G"
+ [9] "DBO.E"    "SSV.P"    "COND.S"   "COND.D"   "COND.E"   "DQO.E"    "COND.P"   "SED.D"   
+[17] "SED.P"    "SS.D"     "SED.E"    "ZN.E" 
+
+
+Random forest filter
+ [1] "PH.D"     "DBO.P"    "DBO.D"    "PH.P"     "PH.E"     "SSV.E"    "DBO.E"    "DQO.D"   
+ [9] "SSV.P"    "RD.SS.G"  "DQO.E"    "SS.P"     "RD.DQO.G" "COND.P"   "SS.D"     "DBO.S"   
+[17] "SED.P"    "COND.E"   "RD.DBO.G" "RD.SS.P" 
+
+
+Automatic Feature Selection Methods using Recursive Feature Elimination (RFE) with Random Forest Algorithm
+
+"PH.D"     "DBO.P"    "DBO.D"    "PH.P"     "PH.E"     "SSV.E"    "DQO.D"   "SSV.P"    "DBO.E"    "RD.DQO.G" "RD.SS.G"  "SS.P"     "DBO.S" "SS.S"    "DQO.E"    "SS.D"     "COND.E"   "SED.P"    "COND.S"   "COND.P"
+
+All 37 attributes
+pred     label1 label2
+  label1    335      6
+  label2     12     32
+  
+Union
+pred     label1 label2
+  label1    325      6
+  label2      8     46
+
+Intersection
+pred     label1 label2
+  label1    307      1
+  label2     16     61
+
+Chisquare
+pred     label1 label2
+  label1    310      1
+  label2     12     62
+  
+Randomforest
+pred     label1 label2
+  label1    327      5
+  label2     12     41
+  
+Randomforest RFE
+pred     label1 label2
+  label1    326     10
+  label2     10     39
+  
+ 
+ 
+ Naive Bayes 
+
+FEATURE EXTRACTIONS                       ACCURACY        PRECISION           RECALL             F-SCORE                        
+
+All(37 p)                                  0.9532         0.9824              0.9654             0.9484
+Union(Chi+Randomforest)(25 p)              0.9636         0.9818              0.9759             0.9581
+Chisquare (20 p)                           0.9662         0.9967              0.9627             0.9595
+Randomforest   (20 p)                      0.9558         0.9849              0.9646             0.9500
+Randomforest RFE  (20 p)                   0.9480         0.9702              0.9702             0.9412
+Intersection(Chi+Randomforest)(16 p)       0.9558         0.9967              0.9504             0.9472
+
+
+SVM Classifier 
+
+FEATURE EXTRACTIONS                        ACCURACY       PRECISION           RECALL              F-SCORE
+
+All(37 p)                                  0.9844         0.9883              0.9941              0.9824
+Union(Chi+Randomforest)(25 p)              0.9844         0.9883              0.9941              0.9824
+Chisquare (20 p)                           0.9818         0.9826              0.9970              0.9796
+Randomforest   (20 p)                      0.9818         0.9854              0.9941              0.9795
+Randomforest RFE  (20 p)                   0.9844         0.9883              0.9941              0.9824
+Intersection(Chi+Randomforest)(16 p)       0.9740         0.9768              0.9941              0.9710
+
+
+
+
+
+SVM
+##For all 37 attributes
+svm kernel=radial
+ cost:  1 
+ gamma:  0.02702703
+        y
+pred     class1 class2
+  class1    338      4
+  class2      2     41
+  
+  Accuracy:0.9844
+
+
+##For union(25 attributes)
+ SVM-Kernel:  radial 
+       cost:  1 
+      gamma:  0.04 
+        y
+pred     class1 class2
+  class1    338      4
+  class2      2     41
+  
+Accuracy:0.9844
+
+
+##For intersection(16 attributes)
+ SVM-Kernel:  radial 
+       cost:  1 
+      gamma:  0.06666667 
+        y
+pred     class1 class2
+  class1    338      8
+  class2      2     37
+Accuracy:0.9740
+
+##For chisquare(20 attributes)
+SVM-Kernel:  radial 
+       cost:  1 
+      gamma:  0.05
+      
+        y
+pred     class1 class2
+  class1    339      6
+  class2      1     39
+  
+Accuracy:0.9818
+
+##For Random forest
+SVM-Kernel:  radial 
+       cost:  1 
+      gamma:  0.05 
+        y
+pred     class1 class2
+  class1    338      5
+  class2      2     40
+  
+Accuracy:0.9818
+
+##For Random forest RFE
+SVM-Kernel:  radial 
+       cost:  1 
+      gamma:  0.03030303
+      
+pred     class1 class2
+  class1    338      4
+  class2      2     41
+  
+  Accuracy:0.9844
